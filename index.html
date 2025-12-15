@@ -28,7 +28,9 @@
             --text-dark: #212121; /* 极深文本 */
             --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.1);
             --border-radius: 0.6rem;
-            --container-padding: 25px;
+            
+            /* 【优化点 1：全局边距收缩】25px -> 20px */
+            --container-padding: 20px;
         }
 
         body {
@@ -47,7 +49,9 @@
             margin: 0 auto;
             background: var(--card-bg);
             padding: var(--container-padding);
-            padding-top: calc(var(--container-padding) + 20px);
+            
+            /* 【优化点 1：头部空间收缩】顶部填充减少 10px */
+            padding-top: calc(var(--container-padding) + 10px); 
             position: relative;
         }
 
@@ -94,32 +98,35 @@
         }
 
         /* ==================== 3. 题目显示和选项卡片化 (紧凑化重点) ==================== */
+        
+        /* 【优化点 3：题目卡片收缩】 */
         .question-display {
-            padding: 15px;
+            padding: 12px; /* 15px -> 12px */
             border-radius: var(--border-radius);
             background-color: var(--primary-light);
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-            margin-bottom: 18px;
+            margin-bottom: 15px; /* 18px -> 15px */
         }
 
         .question-text {
-            font-size: 1.15em;
+            font-size: 1.1em; /* 1.15em -> 1.1em */
             font-weight: 700;
             color: var(--text-dark);
-            margin-bottom: 15px;
+            margin-bottom: 12px; /* 15px -> 12px */
         }
 
+        /* 【优化点 2：选项卡片紧凑化】 */
         .choice-item {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 8px;
+            margin-bottom: 6px; /* 8px -> 6px */
             cursor: pointer;
-            padding: 12px 14px;
+            padding: 10px 12px; /* 12px 14px -> 10px 12px */
             border-radius: var(--border-radius);
             border: 2px solid #e0e0e0;
             background-color: var(--card-bg);
             transition: all 0.25s ease;
-            min-height: 48px;
+            min-height: 44px; /* 48px -> 44px */
         }
 
         .choice-item:hover, .choice-item:active {
@@ -131,10 +138,10 @@
 
         .choice-item input {
             margin-top: 2px;
-            margin-right: 18px;
+            margin-right: 15px; /* 18px -> 15px */
             flex-shrink: 0;
-            width: 22px;
-            height: 22px;
+            width: 20px; /* 22px -> 20px */
+            height: 20px; /* 22px -> 20px */
             accent-color: var(--primary-color);
         }
 
@@ -153,8 +160,8 @@
         .control-buttons {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            margin-top: 18px;
+            gap: 8px; /* 10px -> 8px */
+            margin-top: 15px; /* 18px -> 15px */
             padding-top: 10px;
             border-top: 1px solid #e0e0e0;
         }
@@ -196,11 +203,12 @@
             order: 2;
         }
 
+        /* 【优化点 4：导航按钮收缩】 */
         #prevBtn, #nextBtn {
             background-color: var(--secondary-color);
             color: white;
             flex-basis: 50%;
-            padding: 12px;
+            padding: 10px; /* 12px -> 10px */
             font-size: 1.05em;
             font-weight: bold;
             border: none;
@@ -233,9 +241,11 @@
             font-size: 1.5em;
             font-weight: 600;
         }
+        
+        /* 【优化点 5：加载按钮收缩】 */
         #loaderSection button {
-            padding: 18px 30px;
-            margin: 12px auto;
+            padding: 15px 30px; /* 18px -> 15px */
+            margin: 8px auto; /* 12px -> 8px */
             background-color: var(--success-color);
             color: white;
             border: none;
@@ -268,7 +278,7 @@
             background-color: var(--primary-color) !important;
             box-shadow: 0 4px 6px rgba(25, 118, 210, 0.3) !important;
             font-size: 1.2em !important;
-            margin-bottom: 25px !important;
+            margin-bottom: 20px !important; /* 25px -> 20px */
         }
         .mixed-mode-btn:hover {
             background-color: #1565C0 !important;
@@ -278,9 +288,10 @@
 
         /* ==================== 6. 反馈区和提交按钮 (紧凑化) ==================== */
 
+        /* 【优化点 4：提交按钮收缩】 */
         #multiSubmitBtn {
-            margin-top: 15px;
-            padding: 14px 20px;
+            margin-top: 12px; /* 15px -> 12px */
+            padding: 12px 20px; /* 14px -> 12px */
             background-color: var(--warning-color);
             color: var(--text-dark);
             border: none;
@@ -297,13 +308,13 @@
              transform: translateY(-1px);
         }
 
-        /* 答案控制区布局 */
+        /* 答案控制区布局 (无需修改，已通过 Flex 实现自适应) */
         #answerControlsGroup {
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            margin-bottom: 12px;
+            margin-bottom: 10px; /* 12px -> 10px */
             font-size: 0.95em;
             color: var(--secondary-color);
             padding: 5px 0;
@@ -388,9 +399,9 @@
         <div id="loaderSection">
             <h2>请选择想要练习的题库</h2>
 
-            <button class="mixed-mode-btn" onclick="loadAndStartMixedQuiz('data/single_01.json', 'data/multi_01.json', '习概混合 100 题')">习概混合 100 题(60单+40多)</button>
+            <button class="mixed-mode-btn" onclick="loadAndStartMixedQuiz('data/single_01.json', 'data/multi_01.json', '🎯 习概混合 100 题 (60单+40多) 🎯')">习概混合 100 题 (60单+40多)</button>
 
-            <button class="mixed-mode-btn" onclick="loadAndStartMixedQuiz('data/single_02.json', 'data/multi_02.json', '毛概混合 100 题')">毛概混合 100 题(60单+40多)</button>
+            <button class="mixed-mode-btn" onclick="loadAndStartMixedQuiz('data/single_02.json', 'data/multi_02.json', '📚 毛概混合 100 题 (60单+40多) 📚')">毛概混合 100 题 (60单+40多)</button>
 
             <button onclick="loadAndStartQuiz('data/single_01.json', '习概单选')">习概单选</button>
             <button onclick="loadAndStartQuiz('data/single_02.json', '毛概单选')">毛概单选</button>
@@ -407,11 +418,11 @@
 
             <div id="answerControlsGroup">
                 <div>
-                    <label for="autoAdvanceCheckbox">答题后自动切题(隐藏结果)</label>
+                    <label for="autoAdvanceCheckbox">答题后自动切题 (隐藏结果)</label>
                     <input type="checkbox" id="autoAdvanceCheckbox" onchange="toggleAutoAdvance()">
                 </div>
                 <div>
-                    <label for="showAnswerCheckbox">显示答案(锁定作答)</label>
+                    <label for="showAnswerCheckbox">显示答案 (锁定作答)</label>
                     <input type="checkbox" id="showAnswerCheckbox" onchange="toggleAnswerLock()">
                 </div>
             </div>
@@ -577,7 +588,7 @@
                 console.error("加载或解析 JSON 时出错:", error);
                 document.getElementById('quizDisplay').innerHTML = `
                     <p style="color: red; font-weight: bold;">加载失败：${error.message}</p>
-                    <p>✅ 解决方法：请使用本地Web服务器（如 Python http.server 或 VS Code 的 Live Server 扩展）来运行此文件。</p>
+                    <p>✅ **解决方法：** 请使用 **本地 Web 服务器**（如 Python http.server 或 VS Code 的 Live Server 扩展）来运行此文件。</p>
                 `;
             }
         }
